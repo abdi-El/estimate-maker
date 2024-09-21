@@ -1,4 +1,4 @@
-import { CarOutlined, FileDoneOutlined, UserOutlined } from '@ant-design/icons'
+import { FileDoneOutlined, UserOutlined } from '@ant-design/icons'
 import { Card, Statistic, StatisticProps } from 'antd'
 import React from 'react'
 import CountUp from 'react-countup'
@@ -25,7 +25,7 @@ function NumberStatistic(props: { value: number; title: string }) {
 }
 
 export default function HomaPage() {
-    const { estimates, cars, customers } = useDatabaseStore((state) => state)
+    const { estimates, customers } = useDatabaseStore((state) => state)
     const navigate = useNavigate()
 
     return (
@@ -36,10 +36,6 @@ export default function HomaPage() {
                     value={estimates.length}
                     title="Preventivi totali"
                 />
-            </Card.Grid>
-            <Card.Grid style={gridStyle} onClick={() => navigate('/cars')}>
-                <CarOutlined />{' '}
-                <NumberStatistic value={cars.length} title="Auto totali" />
             </Card.Grid>
             <Card.Grid style={gridStyle} onClick={() => navigate('/customers')}>
                 <UserOutlined />{' '}

@@ -44,13 +44,7 @@ export default function CustomersForm(props: Props) {
     }
 
     useEffect(() => {
-        if (props.customerId) {
-            form.setFieldsValue(
-                data.filter((car) => car.id == props.customerId)[0]
-            )
-        } else {
-            form.resetFields()
-        }
+        form.resetFields()
     }, [props.customerId, drawerOpen])
 
     return (

@@ -6,7 +6,6 @@ import { PageNotFound } from './pages/404'
 const HomePage = React.lazy(() => import('./pages/Home'))
 const EstimatesPage = React.lazy(() => import('./pages/Estimates'))
 const CustomersPage = React.lazy(() => import('./pages/Customers'))
-const CarsPage = React.lazy(() => import('./pages/Cars'))
 const SettingsPage = React.lazy(() => import('./pages/Settings'))
 
 const router = createBrowserRouter([
@@ -32,14 +31,6 @@ const router = createBrowserRouter([
             {
                 path: `${pathConstants.CUSTOMERS.key}/:customerId`,
                 element: <CustomersPage />,
-            },
-            {
-                path: pathConstants.CARS.key,
-                element: <CarsPage />,
-            },
-            {
-                path: `${pathConstants.CARS.key}/:carId`,
-                element: <CarsPage />,
             },
             {
                 path: pathConstants.SETTINGS.key,

@@ -7,7 +7,6 @@ import useDatabaseStore from '../../../stores/DatabaseStore'
 import useGlobalStore from '../../../stores/GlobalStore'
 import { Estimate, EstimateWithRelated, Settings } from '../../../types/data'
 import SwitchSteps from '../../buttons/SwitchSteps'
-import CarSelect from '../../selects/CarSelect'
 import CustomerSelect from '../../selects/CustomerSelect'
 import PricesForm from './PricesForm'
 import WorksForm from './WorksForm'
@@ -19,7 +18,6 @@ interface Props {
 
 function extractKeys(data: EstimateWithRelated): Estimate {
     let keys: Array<keyof Estimate> = [
-        'car_id',
         'customer_id',
         'works_done',
         'hours_worked',
@@ -47,10 +45,8 @@ function extractKeys(data: EstimateWithRelated): Estimate {
 export default function EstimateFrom(props: Props) {
     const [form] = useForm()
     const drawerOpen = useGlobalStore(useShallow((state) => state.drawerState))
-    const cars = useDatabaseStore((state) => state.cars)
     let data = useDatabaseStore((state) => state.estimates)
     const refetch = useDatabaseStore((state) => state.refetchEstimates)
-    const customerId = useWatch('customer_id', form)
 
     function getWorkshopData() {
         const workshop_data = JSON.parse(
@@ -60,16 +56,11 @@ export default function EstimateFrom(props: Props) {
         return workshop_data_filtered
     }
 
-    function getCar(id: number) {
-        return cars.filter((car) => car.id == id)[0]
-    }
-
     function onFinish() {
         let formData = extractKeys(form.getFieldsValue(true))
         formData = {
             ...formData,
             ...getWorkshopData(),
-            km: getCar(formData.car_id).km,
             works_done: JSON.stringify(formData.works_done),
         }
         let result: Promise<any> | undefined = undefined
@@ -111,10 +102,6 @@ export default function EstimateFrom(props: Props) {
                     {
                         content: <CustomerSelect />,
                         title: 'Cliente:',
-                    },
-                    {
-                        content: <CarSelect customerId={customerId} />,
-                        title: 'Auto:',
                     },
                     {
                         content: <WorksForm />,

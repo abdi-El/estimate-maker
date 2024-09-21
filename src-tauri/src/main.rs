@@ -19,22 +19,6 @@ fn main() {
         },
         Migration {
             version: 2,
-            description: "create_cars_table",
-            sql: "CREATE TABLE cars (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                maker TEXT NOT NULL,
-                model TEXT NOT NULL,
-                number_plate TEXT UNIQUE NOT NULL,
-                km INTEGER NOT NULL,
-                customer_id INTEGER NOT NULL,
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE);
-            ",
-            kind: MigrationKind::Up,
-        },
-        Migration {
-            version: 3,
             description: "create_estimates_table",
             sql: "
                 CREATE TABLE estimates (
@@ -54,7 +38,6 @@ fn main() {
                 customer_id INTEGER NOT NULL,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
                 FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE);
             ",
             kind: MigrationKind::Up,
@@ -72,12 +55,6 @@ fn main() {
                 CREATE TRIGGER customers_updated_at AFTER UPDATE ON customers
                 BEGIN
                     update customers SET updated_at = datetime('now')
-                    WHERE id = NEW.id;
-                END;
-
-                CREATE TRIGGER cars_updated_at AFTER UPDATE ON cars
-                BEGIN
-                    update cars SET updated_at = datetime('now')
                     WHERE id = NEW.id;
                 END;
             ",

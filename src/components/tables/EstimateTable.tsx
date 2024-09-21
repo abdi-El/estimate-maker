@@ -51,18 +51,6 @@ const EstinateTable: React.FC = () => {
             ),
         },
         {
-            title: 'Targa',
-            dataIndex: 'car_number_plate',
-            key: 'car_number_plate',
-            width: '10%',
-            ...getColumnSearchProps(
-                'car_number_plate',
-                setSearchText,
-                setSearchedColumn,
-                searchInput
-            ),
-        },
-        {
             title: 'Data creazione',
             dataIndex: 'created_at',
             key: 'created_at',

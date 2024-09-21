@@ -19,13 +19,6 @@ export interface Settings extends Workshop {
     isDarkTheme: boolean
 }
 
-export interface Car extends DataBaseInterface {
-    maker: string
-    model: string
-    number_plate: string
-    km: number
-    customer_id: number
-}
 
 export interface Customer extends DataBaseInterface {
     name: string
@@ -34,7 +27,6 @@ export interface Customer extends DataBaseInterface {
 }
 
 export interface Estimate extends Workshop, DataBaseInterface {
-    car_id: number
     customer_id: number
     works_done: string
     hours_worked: number
@@ -48,9 +40,5 @@ export interface EstimateWithRelated extends Estimate {
     customer_phone: string
     customer_name: string
     customer_email: string
-    car_id: number
-    car_maker: string
-    car_model: string
-    car_number_plate: string
     km: number
 }

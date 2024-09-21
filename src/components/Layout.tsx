@@ -1,5 +1,4 @@
 import {
-    CarOutlined,
     LoadingOutlined,
     ProfileOutlined,
     SettingOutlined,
@@ -23,11 +22,6 @@ export const pathConstants = {
         key: '/customers',
         label: 'Clienti',
         icon: <UserOutlined />,
-    },
-    CARS: {
-        key: '/cars',
-        label: 'Autoveicoli',
-        icon: <CarOutlined />,
     },
     SETTINGS: {
         key: '/settings',
